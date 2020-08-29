@@ -1,0 +1,4 @@
+#ifndef GEOMETRYHANDLE_H
+#define GEOMETRYHANDLE_H
+
+#endif // GEOMETRYHANDLE_H

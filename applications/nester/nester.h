@@ -5,6 +5,9 @@
 #include <list>
 #include "core/fileformats/svgLoader.h"
 #include "core/geometry/polygons.h"
+#include "convexpolygonplacer.h"
+
+
 /* Helpers  */
 void drawPolygons                  (std::vector<corecvs::Polygon> inputPolygons,
                                     int h, int w, std::string bmpname);
@@ -49,7 +52,7 @@ void doClockOrP                    (corecvs::Polygon &A);
 
 void showPolygon                   (const corecvs::Polygon &A);
 
-corecvs::Polygon getHomotheticPolygon      (corecvs::Polygon& p, double epsil);
+corecvs::Polygon getHomotheticPolygon      (corecvs::Polygon& p, double k);
 
 void vinilPlacementNester          (std::list<corecvs::Polygon> &inputList,
                                     corecvs::Rectangled &bin, double epsil,
@@ -74,5 +77,6 @@ double getMaxValueY                (const std::list<corecvs::Polygon> &inputList
 std::list<corecvs::Polygon>loadPolygonListDXF (const std::string &name);
 
 std::list<corecvs::Polygon> loadPolygonListSVG(const std::string &name);
+
 
 #endif // NESTER_H

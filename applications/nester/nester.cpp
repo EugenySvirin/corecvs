@@ -472,8 +472,7 @@ double OrientAreaTwice (const Vector2dd &a,
     return (a.x() - b.x()) * (c.y() - a.y()) - (a.x() - c.x()) * (b.y() - a.y());
 }
 
-bool isClockOrP(const Polygon &A)
-{
+bool isClockOrP(const Polygon &A) {
     return (OrientAreaTwice(A.getPoint(0), A.getPoint(1), A.getPoint(2)) >= 0);
 }
 
@@ -947,7 +946,7 @@ double ro(Vector2dd A, Vector2dd B) {
     return sqrt((A.x() - B.x()) * (A.x() - B.x()) + (A.y() - B.y()) * (A.y() - B.y()));
 }
 
-Polygon getHomotheticPolygon(Polygon& p, double epsil) {
+Polygon getIndentPolygon(Polygon& p, double epsil) {
     auto mc = massCenter(p);
     double minHeight = 1000000;
     for (size_t i = 0; i < p.size(); ++i) {
@@ -965,6 +964,15 @@ Polygon getHomotheticPolygon(Polygon& p, double epsil) {
         result.push_back(mc + (vert - mc) * koef);
     }
 
+    return result;
+}
+
+Polygon getHomotheticPolygon(Polygon& p, double k) {
+    auto mc = massCenter(p);
+    Polygon result;
+    for (auto& vert: p) {
+        result.push_back(mc + (vert - mc) * k);
+    }
     return result;
 }
 
@@ -997,7 +1005,7 @@ void vinilPlacementNester (list<Polygon> &inputList, Rectangled &bin,
     list<Polygon> inputListTransofrmed;
     auto it = inputList.begin();
     for (auto i = 0; i < sz; ++i) {
-        inputListTransofrmed.push_back(getHomotheticPolygon(*it, epsil));
+        inputListTransofrmed.push_back(getIndentPolygon(*it, epsil));
         ++it;
     }
     switch (whichPlacement) {
@@ -1006,7 +1014,7 @@ void vinilPlacementNester (list<Polygon> &inputList, Rectangled &bin,
     }
     it = inputListTransofrmed.begin();
     for (auto i = 0; i < sz; ++i) {
-        inputListTransofrmed.push_back(getHomotheticPolygon(*it, -epsil));
+        inputListTransofrmed.push_back(getIndentPolygon(*it, -epsil));
         ++it;
     }
     inputList = inputListTransofrmed;
@@ -1026,20 +1034,21 @@ double getMaxValueY(const std::list<corecvs::Polygon> &inputList) {
     return max;
 }
 
-Vector2dd getNextPoint(const list<DxfEntity*> &listOfPoints, const Vector2dd &curPoint) {
+Vector2dd getNextPoint(list<DxfEntity*> &listOfPoints, const Vector2dd &curPoint) {
     using namespace corecvs;
     using namespace std;
-    for (auto &point : listOfPoints) {
+    for (auto it = listOfPoints.begin(); it != listOfPoints.end(); ++it) {
+        auto point = *it;
         auto entData = (DxfLineData)(dynamic_cast<DxfLineEntity*>(point)->data);
         double curX = entData.startPoint.x();
         double curY = entData.startPoint.y();
         Vector2dd candP = {curX, curY};
         if ((curPoint - candP).getLengthStable() < EPSIL) {
+            listOfPoints.erase(it);
             return {entData.endPoint.x(), entData.endPoint.y()};
         }
     }
 }
-
 
 std::list<corecvs::Polygon> loadPolygonListDXF(const std::string &name) {
     using namespace corecvs;
@@ -1051,24 +1060,36 @@ std::list<corecvs::Polygon> loadPolygonListDXF(const std::string &name) {
     auto layerEntitties = builder.layerEntities;
     for (auto &layer : layerEntitties) {
         auto listOfEntitites = layer.second;
+        auto prevSize = listOfEntitites.size();
         auto first = listOfEntitites.begin();
-        if (auto firstPtr = dynamic_cast<DxfLineEntity*>(*first)) {
-            Polygon p;
+        while(!listOfEntitites.empty()) {
+            auto firstPtr = dynamic_cast<DxfLineEntity*>(*first);
+            Polygon p {};
             auto entData = ((DxfLineData)(firstPtr->data));
-            double curX = entData.startPoint.x();
-            double curY = entData.startPoint.y();
-            p.push_back({curX, curY});
+            double firstX = entData.startPoint.x();
+            double firstY = entData.startPoint.y();
+            Vector2dd firstPoint = {firstX, firstY};
+            p.push_back(firstPoint);
 
-            curX = entData.endPoint.x();
-            curY = entData.endPoint.y();
+            double curX = entData.endPoint.x();
+            double curY = entData.endPoint.y();
             Vector2dd curPoint = {curX, curY};
-            p.push_back(curPoint);
-            int restPoints = (int)listOfEntitites.size() - 2;
-            for (int i = 0; i < restPoints; ++i) {
-                curPoint = getNextPoint(listOfEntitites, curPoint);
-                p.push_back(curPoint);
+            listOfEntitites.erase(first);
+
+            first = listOfEntitites.begin();
+            if (auto firstPtr = dynamic_cast<DxfLineEntity*>(*first)) {
+                while((curPoint - firstPoint).getLengthStable() > EPSIL) {
+                    p.push_back(curPoint);
+                    curPoint = getNextPoint(listOfEntitites, curPoint);
+                }
+                if (!listOfEntitites.empty())
+                    first = listOfEntitites.begin();
+
+                if (prevSize == listOfEntitites.size())
+                    break;
+                polygonList.push_back(p);
+                prevSize = listOfEntitites.size();
             }
-            polygonList.push_back(p);
         }
     }
     return polygonList;
@@ -1101,6 +1122,8 @@ std::list<corecvs::Polygon> loadPolygonListSVG(const std::string &name) {
     }
     return polygonList;
 }
+
+
 
 
 

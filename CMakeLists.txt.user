@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.8.2, 2020-06-02T02:30:18. -->
+<!-- Written by QtCreator 4.8.2, 2020-08-26T18:39:19. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -65,9 +65,9 @@
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop Qt 5.12.2 GCC 64bit</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop Qt 5.12.2 GCC 64bit</value>
    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">qt.qt5.5122.gcc_64_kit</value>
-   <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
+   <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">1</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
-   <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">26</value>
+   <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">25</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
     <valuelist type="QVariantList" key="CMake.Configuration"/>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e</value>
@@ -355,7 +355,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/adoptcolor</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/adoptcolor</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.1">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -411,7 +411,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/autonavRW</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/autonavRW</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.10">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -467,7 +467,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/gcodeplayground</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/gcodeplayground</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.11">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -523,7 +523,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/mesh3dplayground</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/mesh3dplayground</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.12">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -579,7 +579,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/grab24</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/grab24</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.13">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -635,7 +635,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/grab24_qt</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/grab24_qt</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.14">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -691,7 +691,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/pattern_detector</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/pattern_detector</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.15">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -747,7 +747,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/raytracerender</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/raytracerender</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.16">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -803,7 +803,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/reprojector</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/reprojector</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.17">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -859,7 +859,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/softrender</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/softrender</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.18">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -915,7 +915,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/face_distortion</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/face_distortion</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.19">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -971,7 +971,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/applications/cloudview</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/applications/cloudview</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.2">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1027,7 +1027,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/avencode</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/avencode</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.20">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1083,7 +1083,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/applications/drone/physics-test</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/applications/drone/physics-test</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.21">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1139,7 +1139,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/applications/drone/drone-utils</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/applications/drone/drone-utils</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.22">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1195,7 +1195,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/applications/drone/drone-app</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/applications/drone/drone-app</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.23">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1251,7 +1251,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/applications/drone/calibrator</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/applications/drone/calibrator</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.24">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1307,7 +1307,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/applications/imageview</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/applications/imageview</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.25">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1363,7 +1363,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/applications/nester</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/applications/nester</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.26">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1419,7 +1419,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/applications/qtnester</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/applications/qtnester</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.27">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1475,7 +1475,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/applications/vinylCutter</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/applications/vinylCutter</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.28">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1531,7 +1531,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/tools/generator</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/tools/generator</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.29">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1587,7 +1587,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test-core</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test-core</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.3">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1643,7 +1643,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/widget_harness</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/widget_harness</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.30">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1699,7 +1699,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test-core/-perf</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test-core/-perf</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.4">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1755,7 +1755,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/example_scene</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/example_scene</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.5">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1811,7 +1811,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/fileloader</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/fileloader</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.6">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1867,7 +1867,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/fftplayground</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/fftplayground</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.7">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1923,7 +1923,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/flow_detector</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/flow_detector</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.8">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -1979,7 +1979,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/flowtest</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/flowtest</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.9">
     <value type="bool" key="Analyzer.QmlProfiler.AggregateTraces">false</value>
@@ -2035,7 +2035,7 @@
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041fu043e u0443u043cu043eu043bu0447u0430u043du0438u044e/test/focus_stack</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/evgeny/Code/build-student-Desktop_Qt_5_12_2_GCC_64bit-u041eu0442u043bu0430u0434u043au0430/test/focus_stack</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">31</value>
   </valuemap>
