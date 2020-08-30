@@ -1,6 +1,7 @@
 #include "core/geometry/polygons.h"
 #include <vector>
 #include <algorithm>
+#define _USE_MATH_DEFINES
 // auxillary geometry I couldn't find or got used to
 namespace corecvs {
 double polygonLowBound(const Polygon& A) {
@@ -51,10 +52,10 @@ Vector2dd massCenter(Polygon &A) {
 }
 
 void lowerVertexMassCenter(Polygon &A) {
-    double pi = 3.1415; //coudnt find pi in corecvs
+
     Polygon polygonToRotate = A;
     size_t stepsAmount = 64;
-    double step = (2 * pi) / (double)stepsAmount;
+    double step = (2 * M_PI) / (double)stepsAmount;
     size_t bestAngleIndex = 0;
     double bestMassCenterHeight = 1000 * 1000;
     for (size_t i = 0; i < stepsAmount; ++i) {
@@ -74,10 +75,9 @@ void lowerVertexMassCenter(Polygon &A) {
 }
 
 void lowerMassCenter(Polygon& A) { //copypast of lowerVertexMassCenter except double curMSy = massCenter(polygonToRotate).y();
-    double pi = 3.1415; //coudnt find pi in corecvs
     Polygon polygonToRotate = A;
     size_t stepsAmount = 64;
-    double step = (2 * pi) / (double)stepsAmount;
+    double step = (2 * M_PI) / (double)stepsAmount;
     size_t bestAngleIndex = 0;
     double bestMassCenterHeight = 1000 * 1000;
     for (size_t i = 0; i < stepsAmount; ++i) {
@@ -156,36 +156,6 @@ static Vector2dd getPointByGenInd(const Polygon &A, int i) {
     return A[getPositiveReserve(i, A.size())];
 }
 
-static bool leftOXAngleIsBigger(const Vector2dd &left, //damn its wrong
-                     const Vector2dd &right) { // antiClockwise to vector -(OX)
-    double cosLeft = left.x() / left.l2Metric();
-    double sinLeft = left.y() / left.l2Metric();
-    double cosRight = right.x() / right.l2Metric();
-    double sinRight = right.y() / right.l2Metric();
-
-    if (cosLeft + 0.05 >= 1) {
-        return false;
-    }
-    if (cosRight + 0.05 >= 1) {
-        return true;
-    }
-    if (sinLeft < 0 && sinRight > 0) {
-        return true;
-    } else if (sinLeft > 0 && sinRight < 0) {
-        return false;
-    } else if (sinLeft >= 0 && sinRight >= 0) {
-        return (cosLeft <= cosRight);
-    } else if (sinLeft <= 0 && sinRight <= 0) {
-        return (cosLeft >= cosRight);
-    }
-    std :: cerr << "bad angles compared" << std :: endl;
-}
-
-static bool leftOXAngleIsSmaller(const Vector2dd &left, //damn its wrong
-                               const Vector2dd &right) {
-    return !leftOXAngleIsBigger(left, right);
-}
-
 static Vector2dd getLastVertex(const Polygon& A) {
     return A[A.size() - 1];
 }
@@ -242,18 +212,8 @@ void doClockOrP(Polygon &A) {
 //}
 
 static bool isRightOriented(const Vector2dd &left,
-                    const Vector2dd &right) //
-{
-//    double minusRadian1 = v1.x()/ v1.l2Metric();
-//    double minusRadian2 = v2.x()/ v2.l2Metric();
-
-//    if(v1.y() <= 0) // inmportant moment
-//        minusRadian1 = 2 - minusRadian1;
-//    if(v2.y() <= 0)
-//        minusRadian2 = 2 - minusRadian2;
-//    return (minusRadian1 < minusRadian2);
+                            const Vector2dd &right) {
     double orientation = OrientAreaTwice({0, 0}, left, right);
-
     return (orientation >= 0);
 }
 

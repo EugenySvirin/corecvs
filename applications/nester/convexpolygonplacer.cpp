@@ -86,7 +86,7 @@ void failToPlace(size_t inputNumber) {
 }
 
 bool ConvexPolygonPlacer::positionIsValid(const Vector2dd &position) {
-    if (!innerFP.contains(position)) {//внутри должен быть
+    if (!innerFP.contains(position)) {
         return false;
     }
     for (auto& pol :nfps) {
@@ -107,7 +107,7 @@ std::vector<Polygon> ConvexPolygonPlacer::blPlacement(
 
     Polygon curPolygon = polygons[inputNumber];
     setInnerFitPolygon(curPolygon);
-    while(!fittingFirstPolygon(curPolygon)
+    while (!fittingFirstPolygon(curPolygon)
           && inputNumber != polygons.size()) {
         failToPlace(inputNumber);
         curPolygon = polygons[++inputNumber];
