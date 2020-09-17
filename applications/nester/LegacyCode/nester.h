@@ -5,7 +5,7 @@
 #include <list>
 #include "core/fileformats/svgLoader.h"
 #include "core/geometry/polygons.h"
-#include "convexpolygonplacer.h"
+#include "NesterCore/convexpolygonplacer.h"
 
 
 /* Helpers  */

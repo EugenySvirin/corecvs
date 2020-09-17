@@ -51,8 +51,7 @@ Vector2dd massCenter(Polygon &A) {
     return massCenter;
 }
 
-void lowerVertexMassCenter(Polygon &A) {
-
+void lowerVertexMassCenter(Polygon &A) { //REWRITE: can find exact rotation, one that makes it lay on one edge
     Polygon polygonToRotate = A;
     size_t stepsAmount = 64;
     double step = (2 * M_PI) / (double)stepsAmount;
@@ -242,7 +241,6 @@ Polygon convexNFP(const Polygon &A, const Polygon &B)
             ++j;
         }
     }
-
     for (; i < length1; ++i, ++nfpPlace) {
         Vector2dd candidateFromA = -getPointByGenInd(A, i + 1) + getPointByGenInd(A,i);
         convexNFP.push_back(convexNFP[nfpPlace] + candidateFromA);
@@ -253,7 +251,6 @@ Polygon convexNFP(const Polygon &A, const Polygon &B)
     }
     convexNFP.pop_back(); // not to dublicate first vertex
     doClockOrP(convexNFP);
-    //convexNFP.translate(getBotLeftVertex(B) - getBotLeftVertex(convexNFP)); //sometimes dat is mistake duno why
     return convexNFP;
 }
 
@@ -265,7 +262,7 @@ Polygon getSaturatedPolygon(const Polygon& A, size_t steps = 5) {
             saturatedPolygon.push_back(getLastVertex(saturatedPolygon) + edgeStep);
         }
     }
-    for (size_t step = 1; step < steps; ++step) { // < cause exclude dublicate
+    for (size_t step = 1; step < steps; ++step) { // '<' excludes dublicate
         Vector2dd edgeStep = (A[0] - getLastVertex(A)) / (double)steps;
         saturatedPolygon.push_back(getLastVertex(saturatedPolygon) + edgeStep);
     }
@@ -278,7 +275,7 @@ double getPolygonHeight(const corecvs::Polygon& pol) {
 
 bool isInInteriorROConvexPol(const Vector2dd &point,
                          const Polygon &A) {
-    double oldsign = (A.getPoint(1) - A.getPoint(0)).rightNormal() & (point - A.getPoint(0)); //need to initialized
+    double oldsign = (A.getPoint(1) - A.getPoint(0)).rightNormal() & (point - A.getPoint(0)); //needs to initialized
     int len = A.size();
     for (size_t i = 1; i < len; i++) {
         const Vector2dd &curr = A.getPoint(i);
@@ -330,5 +327,4 @@ bool isInInteriorROConvexPol(const Vector2dd &point,
 //           ((A.getPoint(1) - O).rightNormal() & diff) > EPSIL &&
 //           ((A.getPoint(len - 1) - O).leftNormal() & diff) > EPSIL);
 //}
-
 } //namespace corecvs

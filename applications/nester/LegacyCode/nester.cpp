@@ -4,8 +4,6 @@
 #include "core/buffers/rgb24/abstractPainter.h"
 #include "core/buffers/rgb24/rgb24Buffer.h"
 #include "core/fileformats/svgLoader.h"
-#include <fstream>
-#include <list>
 #include "core/utils/utils.h"
 #include "core/buffers/rgb24/abstractPainter.h"
 #include "core/buffers/rgb24/rgb24Buffer.h"
@@ -1032,95 +1030,6 @@ double getMaxValueY(const std::list<corecvs::Polygon> &inputList) {
         }
     }
     return max;
-}
-
-Vector2dd getNextPoint(list<DxfEntity*> &listOfPoints, const Vector2dd &curPoint) {
-    using namespace corecvs;
-    using namespace std;
-    for (auto it = listOfPoints.begin(); it != listOfPoints.end(); ++it) {
-        auto point = *it;
-        auto entData = (DxfLineData)(dynamic_cast<DxfLineEntity*>(point)->data);
-        double curX = entData.startPoint.x();
-        double curY = entData.startPoint.y();
-        Vector2dd candP = {curX, curY};
-        if ((curPoint - candP).getLengthStable() < EPSIL) {
-            listOfPoints.erase(it);
-            return {entData.endPoint.x(), entData.endPoint.y()};
-        }
-    }
-}
-
-std::list<corecvs::Polygon> loadPolygonListDXF(const std::string &name) {
-    using namespace corecvs;
-    using namespace std;
-    list<Polygon> polygonList {};
-    DxfBuilder builder;
-    DxfLoader loader(builder);
-    loader.load(name);
-    auto layerEntitties = builder.layerEntities;
-    for (auto &layer : layerEntitties) {
-        auto listOfEntitites = layer.second;
-        auto prevSize = listOfEntitites.size();
-        auto first = listOfEntitites.begin();
-        while(!listOfEntitites.empty()) {
-            auto firstPtr = dynamic_cast<DxfLineEntity*>(*first);
-            Polygon p {};
-            auto entData = ((DxfLineData)(firstPtr->data));
-            double firstX = entData.startPoint.x();
-            double firstY = entData.startPoint.y();
-            Vector2dd firstPoint = {firstX, firstY};
-            p.push_back(firstPoint);
-
-            double curX = entData.endPoint.x();
-            double curY = entData.endPoint.y();
-            Vector2dd curPoint = {curX, curY};
-            listOfEntitites.erase(first);
-
-            first = listOfEntitites.begin();
-            if (auto firstPtr = dynamic_cast<DxfLineEntity*>(*first)) {
-                while((curPoint - firstPoint).getLengthStable() > EPSIL) {
-                    p.push_back(curPoint);
-                    curPoint = getNextPoint(listOfEntitites, curPoint);
-                }
-                if (!listOfEntitites.empty())
-                    first = listOfEntitites.begin();
-
-                if (prevSize == listOfEntitites.size())
-                    break;
-                polygonList.push_back(p);
-                prevSize = listOfEntitites.size();
-            }
-        }
-    }
-    return polygonList;
-}
-
-void addPolygonsFromSVGShape(SvgShape* sh, std::list<corecvs::Polygon>& polygonList) {
-    using namespace corecvs;
-    using namespace std;
-
-    if (sh->type == 2) {
-        polygonList.push_back(((SvgPolygon*)sh)->polygon);
-    } else if (sh->type == 7) {
-        for (auto s : ((SvgGroup*)sh)->shapes) {
-            addPolygonsFromSVGShape(s, polygonList);
-        }
-    }
-}
-
-std::list<corecvs::Polygon> loadPolygonListSVG(const std::string &name) {
-    using namespace corecvs;
-    using namespace std;
-
-    list<Polygon> polygonList {};
-    std::ifstream proxi(name, std::ifstream::binary);
-    SvgFile svgFile;
-    SvgLoader loader;
-    loader.loadSvg(proxi, svgFile);
-    for (auto sh : svgFile.shapes) {
-        addPolygonsFromSVGShape(sh, polygonList);
-    }
-    return polygonList;
 }
 
 

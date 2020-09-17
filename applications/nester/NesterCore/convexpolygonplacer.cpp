@@ -1,5 +1,5 @@
-#include "convexpolygonplacer.h"
-#include "nester_geometry.h"
+#include "NesterCore/convexpolygonplacer.h"
+#include "NesterCore/nester_geometry.h"
 #include <algorithm>
 #include <vector>
 
@@ -97,7 +97,7 @@ bool ConvexPolygonPlacer::positionIsValid(const Vector2dd &position) {
     return true;
 }
 
-std::vector<Polygon> ConvexPolygonPlacer::blPlacement(
+void ConvexPolygonPlacer::blPlacement(
         std::vector<Polygon> &polygons) {
     using namespace std;
     size_t inputNumber = 0;
@@ -149,7 +149,6 @@ std::vector<Polygon> ConvexPolygonPlacer::blPlacement(
     placedPolygons.push_back(curPolygon);
     ++inputNumber;
     }
-    return placedPolygons;
 }
 
 void nfpTranslation(Polygon& A, Vector2dd& position) {
@@ -176,7 +175,7 @@ void ConvexPolygonPlacer::findBestPositionRotations(vector<double> &angles,
     placedPolygons.push_back(curPolygon);
 }
 
-std::vector<Polygon> ConvexPolygonPlacer::blPlacementWithRotations (
+void ConvexPolygonPlacer::blPlacementWithRotations (
         std::vector<Polygon> &polygons, int rotations) {
     using namespace std;
     double pi = 3.1415;
@@ -231,10 +230,9 @@ std::vector<Polygon> ConvexPolygonPlacer::blPlacementWithRotations (
         findBestPositionRotations(angles, possiblePositions, curPolygon);
         ++inputNumber;
     }
-    return placedPolygons;
 }
 
-std::vector<Polygon> ConvexPolygonPlacer::blPRMassPriority(
+void ConvexPolygonPlacer::blPRMassPriority(
         std::vector<Polygon> &polygons, int rotations) {
     using namespace std;
     double pi = 3.1415;
@@ -258,7 +256,7 @@ std::vector<Polygon> ConvexPolygonPlacer::blPRMassPriority(
         curPolygon = polygons[inputNumber];
         Polygon priorityPossiblePositions;
         Polygon possiblePositions;
-        std::vector<double> angles;
+        vector<double> angles;
         for (size_t i = 0; i < rotations; ++i) {
             auto curRotationPolygon = curPolygon;
             rotatePolAngle(curRotationPolygon, ((double)i) * step);
@@ -324,11 +322,10 @@ std::vector<Polygon> ConvexPolygonPlacer::blPRMassPriority(
             ++inputNumber;
         }
     }
-    return placedPolygons;
 }
 
-std::vector<Polygon> ConvexPolygonPlacer::blPRVerticesMassPriority(
-        std::vector<Polygon> &polygons, int rotations) {
+void ConvexPolygonPlacer::blPRVerticesMassPriority(
+        vector<Polygon> &polygons, int rotations) {
     using namespace std;
     double pi = 3.1415;
     size_t inputNumber = 0;
@@ -351,7 +348,7 @@ std::vector<Polygon> ConvexPolygonPlacer::blPRVerticesMassPriority(
         curPolygon = polygons[inputNumber];
         Polygon priorityPossiblePositions;
         Polygon possiblePositions;
-        std::vector<double> angles;
+        vector<double> angles;
         for (size_t i = 0; i < rotations; ++i) {
             auto curRotationPolygon = curPolygon;
             rotatePolAngle(curRotationPolygon, ((double)i) * step);
@@ -416,11 +413,10 @@ std::vector<Polygon> ConvexPolygonPlacer::blPRVerticesMassPriority(
             ++inputNumber;
         }
     }
-    return placedPolygons;
 }
 
-std::vector<Polygon> ConvexPolygonPlacer::blPRHeightPriority(
-        std::vector<Polygon> &polygons, int rotations) {
+void ConvexPolygonPlacer::blPRHeightPriority(
+        vector<Polygon> &polygons, int rotations) {
     using namespace std;
     double pi = 3.1415;
     size_t inputNumber = 0;
@@ -497,7 +493,6 @@ std::vector<Polygon> ConvexPolygonPlacer::blPRHeightPriority(
             ++inputNumber;
         }
     }
-    return placedPolygons;
 }
 
 ConvexPolygonPlacer::ConvexPolygonPlacer():
@@ -540,6 +535,27 @@ void ConvexPolygonPlacer::setBin(const Rectangled &newBin) {
     bin = newBin;
 }
 
+void ConvexPolygonPlacer::setPlacementMethod(PlacementMethod newPlacementMethod) {
+    placementMethod = newPlacementMethod;
+}
+
+void ConvexPolygonPlacer::runPlacement(std::vector<Polygon> &polygons, int rotations){
+    switch(placementMethod) {
+    case PlacementMethod::blPlacementWithRotations:
+        blPlacementWithRotations(polygons, rotations);
+        break;
+    case PlacementMethod::blPRMassPriority:
+        blPRMassPriority(polygons, rotations);
+        break;
+    case PlacementMethod::blPRVerticesMassPriority:
+        blPRVerticesMassPriority(polygons, rotations);
+        break;
+    case PlacementMethod::blPRHeightPriority:
+        blPRHeightPriority(polygons, rotations);
+        break;
+    }
+}
+
 size_t ConvexPolygonPlacer::getSaturation() const {
     return saturation;
 }
@@ -554,6 +570,14 @@ double ConvexPolygonPlacer::getSigma() const {
 
 Rectangled ConvexPolygonPlacer::getBin() const {
     return bin;
+}
+
+PlacementMethod ConvexPolygonPlacer::getPlacementMethod() const {
+    return placementMethod;
+}
+
+vector<Polygon> ConvexPolygonPlacer::getPlacedPolygons() const {
+    return placedPolygons;
 }
 } //namespace corecvs
 
