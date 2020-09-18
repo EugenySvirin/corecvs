@@ -17,9 +17,6 @@
 using namespace corecvs;
 using namespace std;
 
-void drawPolygons(list <Polygon> inputPolygons, int h, int w, string bmpname);
-void drawSvgPolygons(list <Polygon> inputPolygons, int h, int w, string svgName);
-
 template <typename T>
 void printCont(T cont) {
     for (auto &p : cont) {
@@ -29,11 +26,5 @@ void printCont(T cont) {
 }
 
 int main(int argc, char **argv) {
-    using namespace std;
-    using namespace corecvs;
-    //RunTests();
-
-    vector<Polygon> polygons;
-
-    drawSvgPolygons(polygons, 10, 10, "exist");
+    RunTests();
 }

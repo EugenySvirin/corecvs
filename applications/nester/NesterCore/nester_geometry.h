@@ -5,13 +5,13 @@
 namespace corecvs {
 Vector2dd verticesMassCenter(Polygon const &A);
 
-Vector2dd massCenter        (Polygon &A);
+Vector2dd massCenter        (Polygon &A); //area is not const for Polygon
 
 double polygonLowBound      (const Polygon& A);
 
 void rotatePolAngle         (Polygon &A, double Phi);
 
-void lowerVertexMassCenter  (Polygon &A);
+void lowerVerticesMassCenter(Polygon &A);
 
 void lowerMassCenter        (Polygon &A);
 
@@ -42,5 +42,5 @@ double getPolygonHeight     (const Polygon& A);
 
 bool isInInteriorROConvexPol(const Vector2dd &point,
                              const Polygon &A);
-}
+} //namespace corecvs
 #endif // NESTER_GEOMETRY_H

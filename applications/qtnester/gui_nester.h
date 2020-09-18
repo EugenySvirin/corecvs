@@ -1,19 +1,11 @@
 #ifndef GUI_NESTER_H
 #define GUI_NESTER_H
-#include <QDialog>
 #include "core/buffers/rgb24/rgbTBuffer.h"
 #include "core/buffers/g12Buffer.h"
 #include "core/buffers/converters/debayer.h"
-#include "nester.h"
-#include <QDialog>
-#include "core/buffers/rgb24/rgbTBuffer.h"
-#include "core/buffers/g12Buffer.h"
-#include "core/buffers/converters/debayer.h"
-#include "nester.h"
-#include <QWidget>
-#include "core/buffers/rgb24/rgb24Buffer.h"
 #include "core/fileformats/svgLoader.h"
 #include <list>
+#include <QDialog>
 
 using namespace corecvs;
 namespace Ui {
@@ -44,9 +36,13 @@ private slots:
 
     void on_Run_nest_released();
 
-    void on_Rotations_windowIconTextChanged(const QString &iconText);
+    void on_Rotations_textChanged();
 
-    void on_Indent_windowIconTextChanged(const QString &iconText);
+    void on_Indent_textChanged();
+
+    void on_Height_textChanged();
+
+    void on_Width_textChanged();
 
 private:
     Ui::GUI_nester *ui;

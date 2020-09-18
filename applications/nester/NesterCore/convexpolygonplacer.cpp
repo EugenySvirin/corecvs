@@ -1,7 +1,9 @@
-#include "NesterCore/convexpolygonplacer.h"
-#include "NesterCore/nester_geometry.h"
 #include <algorithm>
 #include <vector>
+#include <math.h>
+#define _USE_MATH_DEFINES
+#include "NesterCore/convexpolygonplacer.h"
+#include "NesterCore/nester_geometry.h"
 
 namespace corecvs {
 static Polygon polFromRec(const Rectangled &R) { //rectangled is RO and corner is ll one, legacy code
@@ -35,14 +37,13 @@ void ConvexPolygonPlacer::setInnerFitPolygon(const Polygon &A) { // all RO, lega
     }
     Vector2dd cornerOfIFP = {markedPointAbciss - leftOfA, topOfA - botOfA};
     cornerOfIFP += bin.corner;
-
     Vector2dd widthHeightOfIFP = {bin.width()- rightOfA + leftOfA, bin.height() - topOfA + botOfA};
     innerFP = Rectangled(cornerOfIFP.x(), cornerOfIFP.y(), widthHeightOfIFP.x(), widthHeightOfIFP.y()); //x,y,w,h
     innerFPPol = polFromRec(innerFP);
     doClockOrP(innerFPPol);
 }
 
-bool ConvexPolygonPlacer::checkInnerFP() const{
+bool ConvexPolygonPlacer::checkInnerFP() const {
     return (innerFP.height() >= 0 && innerFP.width() >= 0);
 }
 
@@ -80,7 +81,7 @@ void ConvexPolygonPlacer::dumpNfpsVertices(
     }
 }
 
-void failToPlace(size_t inputNumber) {
+void FailToPlaceMsg(size_t inputNumber) {
     using namespace std;
     cout << inputNumber << " polygon cannot be placed" << endl;
 }
@@ -96,7 +97,8 @@ bool ConvexPolygonPlacer::positionIsValid(const Vector2dd &position) {
     }
     return true;
 }
-
+//all placements are copypasts, refactoring not that easy,
+//probable solve is making subclasses of ConvexPolygonPlacer
 void ConvexPolygonPlacer::blPlacement(
         std::vector<Polygon> &polygons) {
     using namespace std;
@@ -109,7 +111,7 @@ void ConvexPolygonPlacer::blPlacement(
     setInnerFitPolygon(curPolygon);
     while (!fittingFirstPolygon(curPolygon)
           && inputNumber != polygons.size()) {
-        failToPlace(inputNumber);
+        FailToPlaceMsg(inputNumber);
         curPolygon = polygons[++inputNumber];
         setInnerFitPolygon(curPolygon);
     }
@@ -119,7 +121,7 @@ void ConvexPolygonPlacer::blPlacement(
     curPolygon = polygons[inputNumber];
     setInnerFitPolygon(curPolygon);
     if (!checkInnerFP()) {
-        failToPlace(inputNumber);
+        FailToPlaceMsg(inputNumber);
         ++inputNumber;
         continue;
     }
@@ -138,7 +140,7 @@ void ConvexPolygonPlacer::blPlacement(
     }
 
     if (possiblePositions.empty()) {
-        failToPlace(inputNumber);
+        FailToPlaceMsg(inputNumber);
         ++inputNumber;
         continue;
     }
@@ -157,16 +159,15 @@ void nfpTranslation(Polygon& A, Vector2dd& position) {
 }
 
 void ConvexPolygonPlacer::findBestPosition(
-                      Polygon& possiblePositions,
-                      Polygon curPolygon) {
+     Polygon& possiblePositions, Polygon curPolygon) {
     Vector2dd bestPosition = getBotLeftVertex(possiblePositions);
     nfpTranslation(curPolygon, bestPosition);
     placedPolygons.push_back(curPolygon);
 }
 
-void ConvexPolygonPlacer::findBestPositionRotations(vector<double> &angles,
-                      Polygon& possiblePositions,
-                      Polygon curPolygon) {
+void ConvexPolygonPlacer::findBestPositionRotations(
+     vector<double> &angles, Polygon& possiblePositions,
+     Polygon curPolygon) {
     int angleIndex = getBotLeftIndex(possiblePositions);
     double angle = angles[angleIndex];
     rotatePolAngle(curPolygon, angle);
@@ -178,9 +179,7 @@ void ConvexPolygonPlacer::findBestPositionRotations(vector<double> &angles,
 void ConvexPolygonPlacer::blPlacementWithRotations (
         std::vector<Polygon> &polygons, int rotations) {
     using namespace std;
-    double pi = 3.1415;
     size_t inputNumber = 0;
-
     placedPolygons = {};
     nfps = {};
 
@@ -188,14 +187,14 @@ void ConvexPolygonPlacer::blPlacementWithRotations (
     setInnerFitPolygon(curPolygon);
     while(!fittingFirstPolygon(curPolygon)
           && inputNumber != polygons.size()) {
-        failToPlace(inputNumber);
+        FailToPlaceMsg(inputNumber);
         curPolygon = polygons[++inputNumber];
         setInnerFitPolygon(curPolygon);
     }
     ++inputNumber;
 
     while (inputNumber < polygons.size()) {
-        double step = 2 * pi / (double)rotations;
+        double step = 2 * M_PI / (double)rotations;
         curPolygon = polygons[inputNumber];
         Polygon possiblePositions;
         std::vector<double> angles;
@@ -222,7 +221,7 @@ void ConvexPolygonPlacer::blPlacementWithRotations (
             }
         }
         if (possiblePositions.empty()) {
-            failToPlace(inputNumber);
+            FailToPlaceMsg(inputNumber);
             ++inputNumber;
             continue;
         }
@@ -235,9 +234,7 @@ void ConvexPolygonPlacer::blPlacementWithRotations (
 void ConvexPolygonPlacer::blPRMassPriority(
         std::vector<Polygon> &polygons, int rotations) {
     using namespace std;
-    double pi = 3.1415;
     size_t inputNumber = 0;
-
     placedPolygons = {};
     nfps = {};
 
@@ -245,14 +242,14 @@ void ConvexPolygonPlacer::blPRMassPriority(
     setInnerFitPolygon(curPolygon);
     while(!fittingFirstPolygon(curPolygon)
           && inputNumber != polygons.size()) {
-        failToPlace(inputNumber);
+        FailToPlaceMsg(inputNumber);
         curPolygon = polygons[++inputNumber];
         setInnerFitPolygon(curPolygon);
     }
     ++inputNumber;
 
     while (inputNumber < polygons.size()) {
-        double step = 2 * pi / (double)rotations;
+        double step = 2 * M_PI / (double)rotations;
         curPolygon = polygons[inputNumber];
         Polygon priorityPossiblePositions;
         Polygon possiblePositions;
@@ -283,7 +280,7 @@ void ConvexPolygonPlacer::blPRMassPriority(
             }
         }
         if (possiblePositions.empty() && priorityPossiblePositions.empty()) {
-            failToPlace(inputNumber);
+            FailToPlaceMsg(inputNumber);
             ++inputNumber;
             continue;
         }
@@ -327,9 +324,7 @@ void ConvexPolygonPlacer::blPRMassPriority(
 void ConvexPolygonPlacer::blPRVerticesMassPriority(
         vector<Polygon> &polygons, int rotations) {
     using namespace std;
-    double pi = 3.1415;
     size_t inputNumber = 0;
-
     placedPolygons = {};
     nfps = {};
 
@@ -337,14 +332,14 @@ void ConvexPolygonPlacer::blPRVerticesMassPriority(
     setInnerFitPolygon(curPolygon);
     while(!fittingFirstPolygon(curPolygon)
           && inputNumber != polygons.size()) {
-        failToPlace(inputNumber);
+        FailToPlaceMsg(inputNumber);
         curPolygon = polygons[++inputNumber];
         setInnerFitPolygon(curPolygon);
     }
     ++inputNumber;
 
     while (inputNumber < polygons.size()) {
-        double step = 2 * pi / (double)rotations;
+        double step = 2 * M_PI / (double)rotations;
         curPolygon = polygons[inputNumber];
         Polygon priorityPossiblePositions;
         Polygon possiblePositions;
@@ -375,7 +370,7 @@ void ConvexPolygonPlacer::blPRVerticesMassPriority(
             }
         }
         if (possiblePositions.empty() && priorityPossiblePositions.empty()) {
-            failToPlace(inputNumber);
+            FailToPlaceMsg(inputNumber);
             ++inputNumber;
             continue;
         }
@@ -418,9 +413,7 @@ void ConvexPolygonPlacer::blPRVerticesMassPriority(
 void ConvexPolygonPlacer::blPRHeightPriority(
         vector<Polygon> &polygons, int rotations) {
     using namespace std;
-    double pi = 3.1415;
     size_t inputNumber = 0;
-
     placedPolygons = {};
     nfps = {};
 
@@ -428,14 +421,14 @@ void ConvexPolygonPlacer::blPRHeightPriority(
     setInnerFitPolygon(curPolygon);
     while(!fittingFirstPolygon(curPolygon)
           && inputNumber != polygons.size()) {
-        failToPlace(inputNumber);
+        FailToPlaceMsg(inputNumber);
         curPolygon = polygons[++inputNumber];
         setInnerFitPolygon(curPolygon);
     }
     ++inputNumber;
 
     while (inputNumber < polygons.size()) {
-        double step = 2 * pi / (double)rotations;
+        double step = 2 * M_PI / (double)rotations;
         curPolygon = polygons[inputNumber];
         Polygon priorityPossiblePositions;
         Polygon possiblePositions;
@@ -466,7 +459,7 @@ void ConvexPolygonPlacer::blPRHeightPriority(
             }
         }
         if (possiblePositions.empty() && priorityPossiblePositions.empty()) {
-            failToPlace(inputNumber);
+            FailToPlaceMsg(inputNumber);
             ++inputNumber;
             continue;
         }
@@ -495,24 +488,19 @@ void ConvexPolygonPlacer::blPRHeightPriority(
     }
 }
 
-ConvexPolygonPlacer::ConvexPolygonPlacer():
-    saturation(5), binSaturation(200), sigma(0.2),
-    bin({10, 10, 60, 60}) {}
+ConvexPolygonPlacer::ConvexPolygonPlacer() {}
 
 ConvexPolygonPlacer::ConvexPolygonPlacer(size_t saturation):
-    saturation(saturation), binSaturation(20 * saturation),
-    sigma(0.2), bin({10, 10, 60, 60}) {}
+    saturation(saturation), binSaturation(20 * saturation) {}
 
 ConvexPolygonPlacer::ConvexPolygonPlacer(size_t saturation,
                                           size_t binSaturation):
-    saturation(saturation), binSaturation(binSaturation),
-    sigma(0.2), bin({10, 10, 60, 60}) {}
+    saturation(saturation), binSaturation(binSaturation) {}
 
 ConvexPolygonPlacer::ConvexPolygonPlacer(size_t saturation,
                                           size_t binSaturation,
                                          const Rectangled& bin):
-    saturation(saturation), binSaturation(binSaturation),
-    sigma(0.2), bin(bin) {}
+    saturation(saturation), binSaturation(binSaturation), bin(bin) {}
 
 Polygon ConvexPolygonPlacer:: getSaturatedNFP
 (const Polygon& A, const Polygon& B) const {
@@ -580,94 +568,3 @@ vector<Polygon> ConvexPolygonPlacer::getPlacedPolygons() const {
     return placedPolygons;
 }
 } //namespace corecvs
-
-//std::vector<Polygon> ConvexPolygonPlacer::blPRPriority(
-//        std::vector<Polygon> &polygons, int rotations) {
-//    using namespace std;
-//    double pi = 3.1415;
-//    size_t inputNumber = 0;
-
-//    placedPolygons = {};
-//    nfps = {};
-
-//    Polygon curPolygon = polygons[inputNumber];
-//    setInnerFitPolygon(curPolygon);
-//    while(!fittingFirstPolygon(curPolygon)
-//          && inputNumber != polygons.size()) {
-//        failToPlace(inputNumber);
-//        curPolygon = polygons[++inputNumber];
-//        setInnerFitPolygon(curPolygon);
-//    }
-//    ++inputNumber;
-
-//    while (inputNumber < polygons.size()) {
-//        double step = 2 * pi / (double)rotations;
-//        curPolygon = polygons[inputNumber];
-//        Polygon priorityPossiblePositions;
-//        Polygon possiblePositions;
-//        std::vector<double> angles;
-//        for (size_t i = 0; i < rotations; ++i) {
-//            auto curRotationPolygon = curPolygon;
-//            rotatePolAngle(curRotationPolygon, ((double)i) * step);
-//            setInnerFitPolygon(curRotationPolygon);
-//            if (!checkInnerFP()) {
-//                continue;
-//            }
-
-//            dumpNFPs(curRotationPolygon);
-
-//            vector<Vector2dd> positions;
-//            dumpBinVertices(positions);
-//            dumpNfpsVertices(positions);
-
-//            for (auto& pos: positions) {
-//                if (positionIsValid(pos)) {
-//                    if (i != 0) {
-//                    possiblePositions.push_back(pos);
-//                    angles.push_back(i * step);
-//                    } else {
-//                        priorityPossiblePositions.push_back(pos);
-//                    }
-//                }
-//            }
-//        }
-//        if (possiblePositions.empty() && priorityPossiblePositions.empty()) {
-//            failToPlace(inputNumber);
-//            ++inputNumber;
-//            continue;
-//        }
-
-//        if (possiblePositions.empty()) {
-//            findBestPosition(priorityPossiblePositions, curPolygon);
-//            ++inputNumber;
-//            continue;
-//        }
-
-//        if (priorityPossiblePositions.empty()) {
-//            findBestPositionRotations(angles, possiblePositions, curPolygon);
-//            ++inputNumber;
-//            continue;
-//        }
-//        double polHeight = getPolygonHeight(curPolygon);
-//        Vector2dd bestPriorityPos = getBotLeftVertex(priorityPossiblePositions);
-//        Vector2dd bestSimplePos = getBotLeftVertex(possiblePositions);
-//        int angleIndex = getBotLeftIndex(possiblePositions);
-//        double angle = angles[angleIndex];
-//        auto simpleCandidate = curPolygon;
-//        auto priorityCandidate = curPolygon;
-//        rotatePolAngle(simpleCandidate, angle);
-//        nfpTranslation(simpleCandidate, bestSimplePos);
-//        nfpTranslation(curPolygon, bestPriorityPos);
-
-//        double candidateMassCenterDif = (verticesMassCenter(priorityCandidate)
-//                                         - verticesMassCenter(simpleCandidate)).y();
-//        if (candidateMassCenterDif < polHeight * sigma) {
-//            findBestPosition(priorityPossiblePositions, curPolygon);
-//            ++inputNumber;
-//        } else {
-//            findBestPositionRotations(angles, possiblePositions, curPolygon);
-//            ++inputNumber;
-//        }
-//    }
-//    return placedPolygons;
-//}

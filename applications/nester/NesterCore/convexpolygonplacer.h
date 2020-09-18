@@ -45,14 +45,14 @@ public:
    void setPlacementMethod       (PlacementMethod newPlacementMethod);
 
 private:
-    size_t saturation;
-    size_t binSaturation;
-    double sigma;
+    size_t saturation = 5;
+    size_t binSaturation = 200;
+    double sigma = 0.2;
     PlacementMethod placementMethod = PlacementMethod::blPlacementWithRotations;
 
     std::vector<Polygon> nfps;
     std::vector<Polygon> placedPolygons;
-    Rectangled bin;
+    Rectangled bin = {10, 10, 60 , 60};
     Rectangled innerFP;
     Polygon innerFPPol; //костыль да
 

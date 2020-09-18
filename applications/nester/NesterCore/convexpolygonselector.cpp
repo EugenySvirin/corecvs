@@ -1,6 +1,6 @@
+#include <algorithm>
 #include "NesterCore/convexpolygonselector.h"
 #include "nester_geometry.h"
-#include <algorithm>
 
 namespace corecvs {
 static bool leftHasSmallerArea(Polygon& left, Polygon& right) { //Polygon::area not const
@@ -71,7 +71,7 @@ void ConvexPolygonSelector::sortByAreaDecrease(
 void ConvexPolygonSelector::lowerTheVertexMasses(
         std::vector<Polygon> &placedPolygons) {
     for (auto &pol : placedPolygons) {
-        lowerVertexMassCenter(pol);
+        lowerVerticesMassCenter(pol);
     }
 }
 

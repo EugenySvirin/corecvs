@@ -1,7 +1,7 @@
-#include "core/geometry/polygons.h"
 #include <vector>
 #include <algorithm>
 #define _USE_MATH_DEFINES
+#include "core/geometry/polygons.h"
 // auxillary geometry I couldn't find or got used to
 namespace corecvs {
 double polygonLowBound(const Polygon& A) {
@@ -31,7 +31,7 @@ Vector2dd verticesMassCenter(Polygon const &A) {
     return massCenter;
 }
 
-Vector2dd massCenter(Polygon &A) {
+Vector2dd massCenter(Polygon &A) { //area is not const for Polygon
     if (A.size() <= 3) {
         return verticesMassCenter(A);
     }
@@ -51,17 +51,18 @@ Vector2dd massCenter(Polygon &A) {
     return massCenter;
 }
 
-void lowerVertexMassCenter(Polygon &A) { //REWRITE: can find exact rotation, one that makes it lay on one edge
+template <typename FunctionOfPolygon>
+static void lowerPolygon(Polygon& A, FunctionOfPolygon f) { //REWRITE: can find exact rotation, one that makes it lay on one edge
     Polygon polygonToRotate = A;
     size_t stepsAmount = 64;
     double step = (2 * M_PI) / (double)stepsAmount;
     size_t bestAngleIndex = 0;
     double bestMassCenterHeight = 1000 * 1000;
     for (size_t i = 0; i < stepsAmount; ++i) {
-        rotatePolAngle(polygonToRotate, (double)i * step);
-        double curMSy = verticesMassCenter(polygonToRotate).y();
+        rotatePolAngle(polygonToRotate, i * step);
+        double curMCy = f(polygonToRotate).y();
         double curLowBound = polygonLowBound(polygonToRotate);
-        double massCenterHeight = curMSy - curLowBound;
+        double massCenterHeight = curMCy - curLowBound;
         if (bestMassCenterHeight > massCenterHeight) {
             bestMassCenterHeight = massCenterHeight;
             bestAngleIndex = i;
@@ -73,26 +74,12 @@ void lowerVertexMassCenter(Polygon &A) { //REWRITE: can find exact rotation, one
     }
 }
 
-void lowerMassCenter(Polygon& A) { //copypast of lowerVertexMassCenter except double curMSy = massCenter(polygonToRotate).y();
-    Polygon polygonToRotate = A;
-    size_t stepsAmount = 64;
-    double step = (2 * M_PI) / (double)stepsAmount;
-    size_t bestAngleIndex = 0;
-    double bestMassCenterHeight = 1000 * 1000;
-    for (size_t i = 0; i < stepsAmount; ++i) {
-        rotatePolAngle(polygonToRotate, i * step);
-        double curMSy = massCenter(polygonToRotate).y();
-        double curLowBound = polygonLowBound(polygonToRotate);
-        double massCenterHeight = curMSy - curLowBound;
-        if (bestMassCenterHeight > massCenterHeight) {
-            bestMassCenterHeight = massCenterHeight;
-            bestAngleIndex = i;
-        }
-        polygonToRotate = A;
-    }
-    if (bestAngleIndex != 0) {
-        rotatePolAngle(A, bestAngleIndex * step);
-    }
+void lowerVerticesMassCenter(Polygon &A) {
+    lowerPolygon(A, verticesMassCenter);
+}
+
+void lowerMassCenter(Polygon& A) {
+    lowerPolygon(A, massCenter);
 }
 
 size_t getTopRightIndex(const Polygon& A) {

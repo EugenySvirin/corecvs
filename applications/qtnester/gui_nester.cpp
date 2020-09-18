@@ -1,12 +1,8 @@
-#include "gui_nester.h"
-#include "ui_gui_nester.h"
-#include <QDialog>
-#include "gui_nester.h"
-#include "ui_gui_nester.h"
-#include "core/buffers/rgb24/rgb24Buffer.h"
-#include "core/fileformats/svgLoader.h"
 #include <list>
+#include <QPixmap>
+#include <QMessageBox>
 #include <QFileDialog>
+#include <QDialog>
 #include "pointListEditImageWidget.h"
 #include "core/buffers/bufferFactory.h"
 #include "core/buffers/rgb24/rgb24Buffer.h"
@@ -16,8 +12,10 @@
 #include "nester.h"
 #include "core/buffers/rgb24/rgb24Buffer.h"
 #include "core/fileformats/svgLoader.h"
-#include <QPixmap>
-#include <QMessageBox>
+#include "gui_nester.h"
+#include "ui_gui_nester.h"
+#include "core/buffers/rgb24/rgb24Buffer.h"
+#include "core/fileformats/svgLoader.h"
 
 GUI_nester::GUI_nester(QWidget *parent) :
     QDialog(parent),
@@ -33,25 +31,10 @@ GUI_nester::~GUI_nester() {
 void GUI_nester::on_Load_clicked() {
     BufferFactory::getInstance()->printCaps();
     QString name = QFileDialog::getOpenFileName(this, "Open file");
-               /* QFileDialog::getOpenFileName(
-                this,
-                "Choose filename with Bayer or demosaic image",
-                ".",
-                "PPM Images (*.pgm *.ppm);;Generic Images (*.png *.jpg *.bmp)"
-            );*/
     if (name.isEmpty())
         return;
     if (name.endsWith(".svg")) {
         inputPolygons = loadPolygonListSVG(name.toStdString());
-//        std::ifstream proxi(name.toStdString(), std::ifstream::binary);
-//        svgFileP = new SvgFile;
-//        svgLoader.loadSvg(proxi, *svgFileP);
-//        for (auto sh : (*svgFileP).shapes) {
-//            if (sh->type == 2) {
-//                inputPolygons.push_back(((SvgPolygon*)sh)->polygon);
-//            }
-//        }
-//        delete svgFileP;
     } else if (name.endsWith("dxf")) {
         inputPolygons = loadPolygonListDXF(name.toStdString());
     }
@@ -68,10 +51,10 @@ void GUI_nester::on_Save_as_released() {
 
 void GUI_nester::on_Run_nest_released() {
     if (!inputPolygons.empty()) {
-        vinilPlacementNester(inputPolygons, area, indentSize, 1, 1, 0.2, rotationsAmount);
-        std::list<Polygon> inputPolygonsWithArea = inputPolygons;
-        inputPolygonsWithArea.push_back(polFromRec(area));
-        drawSvgPolygons(inputPolygonsWithArea, area.height(), area.width(), "clicked.svg");
+        auto processingPolygons = inputPolygons;
+        vinilPlacementNester(processingPolygons, area, indentSize, 1, 1, 0.2, rotationsAmount);
+        processingPolygons.push_back(polFromRec(area));
+        drawSvgPolygons(processingPolygons, area.height(), area.width(), "clicked.svg");
         QPixmap picture2("clicked.svg");
         ui->pic2->setPixmap(picture2.scaled(ui->pic1->height(), ui->pic1->width(), Qt::KeepAspectRatio));
         double verticalFullness = getMaxValueY(inputPolygons) / area.height();
@@ -80,11 +63,22 @@ void GUI_nester::on_Run_nest_released() {
     }
 }
 
-void GUI_nester::on_Rotations_windowIconTextChanged(const QString &iconText) {
-    rotationsAmount = iconText.toInt();
-    cout << rotationsAmount << "brah";
+void GUI_nester::on_Rotations_textChanged() {
+    rotationsAmount = ui->Rotations->toPlainText().toInt();
 }
 
-void GUI_nester::on_Indent_windowIconTextChanged(const QString &iconText) {
-    indentSize = iconText.toDouble();
+void GUI_nester::on_Indent_textChanged() {
+     indentSize = ui->Indent->toPlainText().toDouble();
+}
+
+void GUI_nester::on_Height_textChanged() {
+    area =  {area.corner.x(), area.corner.y(),
+             ui->Width->toPlainText().toDouble(),
+             ui->Height->toPlainText().toDouble()};
+}
+
+void GUI_nester::on_Width_textChanged() {
+    area =  {area.corner.x(), area.corner.y(),
+             ui->Width->toPlainText().toDouble(),
+             ui->Height->toPlainText().toDouble()};
 }
