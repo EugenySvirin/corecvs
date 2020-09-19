@@ -1,11 +1,12 @@
 #ifndef GUI_NESTER_H
 #define GUI_NESTER_H
+#include <list>
+#include <QDialog>
 #include "core/buffers/rgb24/rgbTBuffer.h"
 #include "core/buffers/g12Buffer.h"
 #include "core/buffers/converters/debayer.h"
 #include "core/fileformats/svgLoader.h"
-#include <list>
-#include <QDialog>
+#include "NesterCore/convexpolygonnester.h"
 
 using namespace corecvs;
 namespace Ui {
@@ -19,10 +20,8 @@ class GUI_nester : public QDialog
         G12Buffer *bayer;
         SvgFile* svgFileP = nullptr;
         SvgLoader svgLoader;
-        std::list<Polygon> inputPolygons;
     public:
         Rectangled area = Rectangled(0, 0, 300, 300);
-        double indentSize = 0;
         size_t rotationsAmount = 4;
 
     public:
@@ -46,6 +45,8 @@ private slots:
 
 private:
     Ui::GUI_nester *ui;
+    ConvexPolygonNester nester;
+
 };
 
 #endif // GUI_NESTER_H

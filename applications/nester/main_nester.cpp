@@ -1,6 +1,5 @@
 #include <fstream>
 #include <list>
-#include <algorithm>
 
 #include "core/utils/utils.h"
 #include "core/buffers/rgb24/abstractPainter.h"
@@ -8,7 +7,6 @@
 #include "core/buffers/bufferFactory.h"
 #include "core/fileformats/svgLoader.h"
 #include "core/reflection/commandLineSetter.h"
-
 #include "core/fileformats/dxf_support/dxfLoader.h"
 #include <algorithm>
 #include "NesterCore/convexpolygonnester.h"

@@ -42,6 +42,10 @@ void ConvexPolygonNester::run_FFD_LVM_BLPR_VM(int rotations) {
               PlacementMethod::blPRVerticesMassPriority, rotations);
 }
 
+vector<Polygon> ConvexPolygonNester::getInputPolygons() const {
+    return inputPolygons;
+}
+
 void ConvexPolygonNester::runNester(OrderMethod orderMethod, MassesMethod massesMethod,
                                     PlacementMethod placementMethod, int rotations) {
     int check = runCheck();
@@ -69,7 +73,7 @@ size_t ConvexPolygonNester::getBinSaturation() {
     return placer.getBinSaturation();
 }
 
-vector<Polygon> ConvexPolygonNester::getPlacedPolygons() {
+vector<Polygon> ConvexPolygonNester::getPlacedPolygons() const {
     return placedPolygons;
 }
 

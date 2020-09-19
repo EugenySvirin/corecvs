@@ -22,8 +22,8 @@ public:
     void run_FFD_LVM_BLPR_VM(int rotations = 16);
 
     Rectangled getBin();
-    vector<Polygon> getInputPolygons();
-    vector<Polygon> getPlacedPolygons();
+    vector<Polygon> getInputPolygons() const;
+    vector<Polygon> getPlacedPolygons() const;
     double getSigma();
     size_t getSaturation();
     size_t getBinSaturation();

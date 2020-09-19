@@ -17,12 +17,21 @@ QT5_WRAP_UI( UI_HEADERS ${UI_FILES} )
 
 
 add_executable(${NAME}
-    ${CMAKE_CURRENT_LIST_DIR}/nester.h
     ${CMAKE_CURRENT_LIST_DIR}/gui_nester.h
     ${CMAKE_CURRENT_LIST_DIR}/gui_nester.cpp
     ${CMAKE_CURRENT_LIST_DIR}/main_qtnester.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/nester.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/
+    ${CMAKE_CURRENT_LIST_DIR}/LegacyCode/nester.h
+    ${CMAKE_CURRENT_LIST_DIR}/NesterCore/nester_geometry.h
+    ${CMAKE_CURRENT_LIST_DIR}/NesterCore/convexpolygonselector.h
+    ${CMAKE_CURRENT_LIST_DIR}/NesterCore/convexpolygonplacer.h
+    ${CMAKE_CURRENT_LIST_DIR}/NesterCore/convexpolygonnester.h
+    ${CMAKE_CURRENT_LIST_DIR}/nesterhelpfulmethods.h
+    ${CMAKE_CURRENT_LIST_DIR}/NesterCore/nester_geometry.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/LegacyCode/nester.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/NesterCore/convexpolygonselector.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/NesterCore/convexpolygonplacer.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/NesterCore/convexpolygonnester.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/nesterhelpfulmethods.cpp
     ${UI_HEADERS}
 )
 

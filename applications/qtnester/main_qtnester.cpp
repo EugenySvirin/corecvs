@@ -5,21 +5,12 @@
  * \date Sep 17, 2010
  * \author Sergey Levi
  */
-
-#include <string>
-#include <iostream>
-#include "nester.h"
-#include <QtGui/QtGui>
-#include <QApplication>
-
-#include "core/utils/global.h"
-
-#include "core/utils/utils.h"
-#include "qtFileLoader.h"
-//#include "imageViewMainWindow.h"
 #include "gui_nester.h"
-int main(int argc, char *argv[])
-{
+#include "ui_gui_nester.h"
+#include "qtFileLoader.h"
+#include "gui_nester.h"
+
+int main(int argc, char *argv[]) {
     SET_HANDLERS();
 
     Q_INIT_RESOURCE(main);

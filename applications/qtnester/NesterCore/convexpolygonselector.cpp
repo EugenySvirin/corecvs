@@ -63,19 +63,19 @@ void ConvexPolygonSelector::sortByAreaIncrease(
 }
 
 void ConvexPolygonSelector::sortByAreaDecrease(
-        vector<Polygon> &placedPolygons) {
+        std::vector<Polygon> &placedPolygons) {
     std::sort(placedPolygons.begin(), placedPolygons.end(),
               leftHasBiggerArea);
 }
 
 void ConvexPolygonSelector::lowerTheVertexMasses(
-        vector<Polygon> &placedPolygons) {
+        std::vector<Polygon> &placedPolygons) {
     for (auto &pol : placedPolygons) {
         lowerVerticesMassCenter(pol);
     }
 }
 
-void ConvexPolygonSelector::lowerTheMasses(vector<Polygon> &placedPolygons) {
+void ConvexPolygonSelector::lowerTheMasses(std::vector<Polygon> &placedPolygons) {
     for (auto &pol : placedPolygons) {
         lowerMassCenter(pol);
     }

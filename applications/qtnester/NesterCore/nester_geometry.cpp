@@ -278,6 +278,7 @@ bool isInInteriorROConvexPol(const Vector2dd &point,
     }
     return true;
 }
+
 //bool isInInteriorROConvexPolBinSearch(const Vector2dd &point, //may be one day better to rewrite that and switch to it
 //                                    const Polygon &A)
 //{
